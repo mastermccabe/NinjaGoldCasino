@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  <script src=" https://code.jquery.com/jquery-3.2.1.slim.min.js "></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js ">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js">
+  </script>
+  <link rel='stylesheet' type 'text/css' href="{{url_for('static',filename='css/styles.css')}}">
+  <script type='text/javascript' src="{{ url_for('static', filename = 'js/myscript.js')}}"></script>
+  <title>Ninja Gold</title>
+</head>
+
+
+<body>
+  <div id="wrapper" class="container card">
+
+    <div id="your gold" class="row container" style="width: 20rem;">
+      <h4> Your gold: {{gold}}</h4>
+      <form action="/reset" method="POST" class="reset container">
+        <input type="submit" name="submit" Value="Reset" />
+      </form>
+    </div>
+    <div class="row container">
+      <div class="place card" style="width: 20rem;">
+        <h4> Farm </h4>
+        <p> earns 10-20 gold</p>
+        <form action="/process_money" method="POST">
+          <input type="hidden" name="hidden" value="farm" />
+          <input type="submit" name="submit" value="Find Gold!" />
+        </form>
+      </div>
+
+
+      <div class="place card" style="width: 20rem;">
+        <h4> Cave </h4>
+        <p> Earns 5-10 gold</p>
+        <form action="/process_money" method="POST">
+          <input type="hidden" name="hidden" value="cave" />
+          <input type="submit" name="submit" value="Find Gold!" />
+        </form>
+      </div>
+      <div class="place card" style="width: 20rem;">
+        <h4> House</h4>
+        <p> Earns 2-5 gold</p>
+        <form action="/process_money" method="POST">
+          <input type="hidden" name="hidden" value="house" />
+          <input type="submit" value="Find Gold!" />
+        </form>
+      </div>
+      <div class="place card" style="width: 20rem;">
+        <h4> Casino</h4>
+        <p> (Risk 0-50 gold)</p>
+        <form action="/process_money" method="POST">
+          <input type="hidden" name="hidden" value="casino" />
+          <input type="submit" value="Find Gold!" />
+        </form>
+      </div>
+
+    </div>
+    <div class "row container">
+      <div class="activities">
+
+        <ul>
+          {% for activity in session['activity'] %}
+          <li class="update">{{activity}}</li>
+          {% endfor %}
+        </ul>
+
+      </div>
+    </div>
+
+</body>
+
+</html>
